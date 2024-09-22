@@ -323,14 +323,23 @@ uint8_t TM1637Display::print(uint8_t start_pos, const char *str) {
              ((data & 0x1) ? 0x40 : 0);               // G
     } else {
       // XABCDEFG > XGFEDCBA
+      // data = ((data & 0x80) ? 0x80 : 0) |  // no move X
+      //        ((data & 0x40) ? 0x1 : 0) |   // A
+      //        ((data & 0x20) ? 0x2 : 0) |   // B
+      //        ((data & 0x10) ? 0x4 : 0) |   // C
+      //        ((data & 0x8) ? 0x8 : 0) |    // D
+      //        ((data & 0x4) ? 0x10 : 0) |   // E
+      //        ((data & 0x2) ? 0x20 : 0) |   // F
+      //        ((data & 0x1) ? 0x40 : 0);    // G
+      // XABCDEFG > XCBAFEDG
       data = ((data & 0x80) ? 0x80 : 0) |  // no move X
-             ((data & 0x40) ? 0x1 : 0) |   // A
-             ((data & 0x20) ? 0x2 : 0) |   // B
-             ((data & 0x10) ? 0x4 : 0) |   // C
-             ((data & 0x8) ? 0x8 : 0) |    // D
-             ((data & 0x4) ? 0x10 : 0) |   // E
-             ((data & 0x2) ? 0x20 : 0) |   // F
-             ((data & 0x1) ? 0x40 : 0);    // G
+             ((data & 0x40) ? 0x10 : 0) |  // A
+             ((data & 0x20) ? 0x20 : 0) |  // B
+             ((data & 0x10) ? 0x40 : 0) |  // C
+             ((data & 0x8) ? 0x2 : 0) |    // D
+             ((data & 0x4) ? 0x4 : 0) |    // E
+             ((data & 0x2) ? 0x8 : 0) |    // F
+             ((data & 0x1) ? 0x1 : 0);     // G
     }
     use_dot = *str == '.';
     if (use_dot) {
