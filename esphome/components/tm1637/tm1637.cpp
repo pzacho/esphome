@@ -135,7 +135,7 @@ void TM1637Display::setup() {
   this->display();
 }
 void TM1637Display::dump_config() {
-  ESP_LOGCONFIG(TAG, "TM1637:");
+  ESP_LOGCONFIG(TAG, "TM1637 - **alternative**:");
   ESP_LOGCONFIG(TAG, "  Intensity: %d", this->intensity_);
   ESP_LOGCONFIG(TAG, "  Inverted: %d", this->inverted_);
   ESP_LOGCONFIG(TAG, "  Length: %d", this->length_);
