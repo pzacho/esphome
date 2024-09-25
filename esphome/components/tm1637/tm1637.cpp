@@ -19,7 +19,7 @@ const uint8_t TM1637_DATA_AUTO_INC_ADDR = 0x00;  //!< Auto increment address
 const uint8_t TM1637_DATA_FIXED_ADDR = 0x04;     //!< Fixed address
 
 // Digit sequence map for 6 digit displays
-const uint8_t digitmap[] = {2, 1, 0, 5, 4, 3};
+const uint8_t DIGITMAP[] = {2, 1, 0, 5, 4, 3};
 
 //
 //      A
@@ -215,12 +215,12 @@ void TM1637Display::display() {
 
   // Write the data bytes
   if (this->inverted_) {
-    for (int8_t i = this->length_ - 1; i >= 0; i--) {
-      this->send_byte_(this->buffer_[digitmap[i]]);
+    for (uint8_t i = this->length_ - 1; i >= 0; i--) {
+      this->send_byte_(this->buffer_[DIGITMAP[i]]);
     }
   } else {
-    for (int8_t i = 0; i < this->length_; i++) {
-      this->send_byte_(this->buffer_[digitmap[i]]);
+    for (uint8_t i = 0; i < this->length_; i++) {
+      this->send_byte_(this->buffer_[DIGITMAP[i]]);
     }
   }
 
