@@ -222,9 +222,6 @@ void TM1637Display::display() {
     for (int8_t i = 0; i < this->length_; i++) {
       this->send_byte_(this->buffer_[digitmap[i]]);
     }
-    for (auto b : this->buffer_) {
-      this->send_byte_(b);
-    }
   }
 
   this->stop_();
